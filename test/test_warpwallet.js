@@ -13,4 +13,7 @@ assert(saltSk.length == 64)
 exports.testWarpWallet = function testWarpWallet() {
     assert(Object.is(kdf(chickens).toString('hex'), chickensSk))
     assert(Object.is(kdf(chickens, salt).toString('hex'), saltSk))
+
+    assert(Object.is(kdf(chickens, '', true).toString('hex'), chickensSk))
+    assert(Object.is(kdf(chickens, salt, true).toString('hex'), saltSk))
 }
