@@ -6,7 +6,7 @@ const scrypt = require('scrypt-async')
 const SK_SIZE = 32
 
 exports.pbkdf2 = function pbkdf2(pwd, salt) {
-    return crypto.pbkdf2Sync(pwd, salt, 2 ** 16, 32, 'sha256')
+    return crypto.pbkdf2Sync(pwd, salt, 2 ** 16, SK_SIZE, 'sha256')
 }
 
 exports.scrypt = function _scrypt(pwd, salt, purejs = false) {

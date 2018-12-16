@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "jsonwebtoken": "^8.4.0",
+    "pem-file": "^1.0.1",
     "scrypt-async": "^2.0.1"
   }
 }
