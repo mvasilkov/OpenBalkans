@@ -16,7 +16,7 @@ exports.getPK = function getPK(sk, short = false) {
 
 function encodePK(pk) {
     if (pk.length < 64)
-        throw Error('Compressed pk not supported')
+        pk = crypto.ECDH.convertKey(pk, 'prime256v1')
     return pem.encode(Buffer.concat([ASN1_PK, pk]), PEM_PK)
 }
 

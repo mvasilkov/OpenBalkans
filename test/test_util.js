@@ -11,7 +11,7 @@ exports.testRoundTrip = function testRoundTrip() {
     assert(Object.is(props.a, 64))
 }
 
-exports.testCompressedPK = function testCompressedPK() {
+exports.testCompressed = function testCompressed() {
     const sk = kdf('Chickens')
     const pk = getPK(sk, true)
     assert(Object.is(pk.length, 33))
