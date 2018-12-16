@@ -8,10 +8,10 @@ const ASN1_SK_2 = Buffer.from([160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 161
 const PEM_PK = 'PUBLIC KEY'
 const PEM_SK = 'EC PRIVATE KEY'
 
-function getPK(sk) {
+exports.getPK = function getPK(sk, short = false) {
     const curve = crypto.createECDH('prime256v1')
     curve.setPrivateKey(sk)
-    return curve.getPublicKey()
+    return curve.getPublicKey(null, short ? 'compressed' : 'uncompressed')
 }
 
 function encodePK(pk) {
@@ -21,12 +21,12 @@ function encodePK(pk) {
 }
 
 function encodeSK(sk, pk = null) {
-    if (pk == null) pk = getPK(sk)
+    if (pk == null) pk = exports.getPK(sk)
     return pem.encode(Buffer.concat([ASN1_SK_1, sk, ASN1_SK_2, pk]), PEM_SK)
 }
 
 function encodeKeyPair(sk, pk = null) {
-    if (pk == null) pk = getPK(sk)
+    if (pk == null) pk = exports.getPK(sk)
     return {
         pk: encodePK(pk),
         sk: encodeSK(sk),
