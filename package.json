@@ -5,13 +5,10 @@
   "author": "Mark Vasilkov (https://github.com/mvasilkov)",
   "license": "MIT",
   "scripts": {
-    "test": "ava"
+    "test": "node test/run"
   },
   "dependencies": {
     "jsonwebtoken": "^8.4.0",
     "scrypt-async": "^2.0.1"
-  },
-  "devDependencies": {
-    "ava": "^1.0.1"
   }
 }
