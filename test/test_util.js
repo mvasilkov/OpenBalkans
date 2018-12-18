@@ -4,19 +4,15 @@ const jwt = require('jsonwebtoken')
 const { PEM, getPK } = require('../balkans/util')
 const { kdf } = require('../balkans/warpwallet')
 
-function bufferEqual(a, b) {
-    return Object.is(a.toString('hex'), b.toString('hex'))
-}
-
 exports.testRoundTripPEM = function testRoundTripPEM() {
     const sk = kdf('Chickens')
     const pk = getPK(sk)
     const encoded = PEM.encodeKeyPair(sk, pk)
-    assert(bufferEqual(PEM.decodePK(encoded.pk), pk))
-    assert(bufferEqual(PEM.decodeSK(encoded.sk), sk))
+    assert(PEM.decodePK(encoded.pk).equals(pk))
+    assert(PEM.decodeSK(encoded.sk).equals(sk))
     const decoded = PEM.decodeKeyPair(encoded.sk)
-    assert(bufferEqual(decoded.pk, pk))
-    assert(bufferEqual(decoded.sk, sk))
+    assert(decoded.pk.equals(pk))
+    assert(decoded.sk.equals(sk))
 }
 
 exports.testRoundTripJWT = function testRoundTripJWT() {
