@@ -1,9 +1,16 @@
+#!/usr/bin/env node
+'use strict'
+
 const assert = require('assert')
 const fs = require('fs')
 
 const figures = require('prompts/lib/util/figures')
-figures.cross = figures.tick = ' '
-
+Object.assign(figures, {
+    tick: ' ',
+    cross: ' ',
+    ellipsis: figures.pointerSmall,
+    pointer: '>',
+})
 const prompts = require('prompts')
 const yargs = require('yargs')
 
@@ -34,7 +41,16 @@ yargs.command('keygen', 'Save WarpWallet keys as PEM', yargs => {
         assert(props.hasOwnProperty('salt'))
 
         const { pk, sk } = PEM.encodeKeyPair(kdf(props.pwd, props.salt))
-        fs.writeFileSync('public.pem', pk, { encoding: 'utf8' })
-        fs.writeFileSync('secret.pem', sk, { encoding: 'utf8' })
+        writeFile('public.pem', pk)
+        writeFile('secret.pem', sk)
     })
-}).argv
+})
+
+if (require.main === module) {
+    yargs.argv
+}
+
+function writeFile(name, contents) {
+    console.log('Writing', name)
+    fs.writeFileSync(name, contents, { encoding: 'utf8' })
+}
