@@ -8,6 +8,8 @@ Internet Balkanization Appliance (IBA) is an implementation of the OpenBalkans p
 
 IBA is a collection of personal weblogs. A weblog is a series of posts.
 
+This document describes the OpenBalkans protocol (OpenBP) version 0.
+
 ### Posts
 
 Container: JSON Web Token (JWT)
@@ -37,7 +39,8 @@ Special post types:
 
 | Name | Type | Required | Comment
 | --- | --- | --- | ---
-| pid | [ObjectId][ObjectId] | Yes | Post OID (contains datetime)
+| openbp | short | Yes | OpenBalkans protocol version
+| pid | [ObjectId][ObjectId] | Yes | Post OID, contains datetime
 | parent | tuple | Other than ~init | Parent OID, and SHA-256(parent JWT)
 | type | string | Yes | Media Type(docs contents) or special
 | docs | list | Other than ~init and ~upd_pk | One or more hyperlinks
