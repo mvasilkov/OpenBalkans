@@ -41,6 +41,8 @@ exports.xor = function xor(a, b) {
 }
 
 exports.kdf = function kdf(pwd, salt = '', purejs = false) {
+    pwd = pwd.normalize('NFC')
+    salt = salt.normalize('NFC')
     return exports.xor(
         exports.scrypt(pwd + '\u0001', salt + '\u0001', purejs),
         exports.pbkdf2(pwd + '\u0002', salt + '\u0002')

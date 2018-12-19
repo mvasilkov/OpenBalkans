@@ -17,3 +17,11 @@ exports.testWarpWallet = function testWarpWallet() {
     assert(Object.is(kdf(chickens, '', true).toString('hex'), chickensSk))
     assert(Object.is(kdf(chickens, salt, true).toString('hex'), saltSk))
 }
+
+const c1 = 'Chicke\u00f1s' // 'Chickeñs'.length == 8
+const c2 = 'Chicken\u0303s' // 'Chickeñs'.length == 9
+
+exports.testWarpWalletNFC = function testWarpWalletNFC() {
+    assert(kdf(c1).equals(kdf(c2)), 'Should normalize passphrase')
+    assert(kdf(chickens, c1).equals(kdf(chickens, c2)), 'Should normalize salt')
+}
