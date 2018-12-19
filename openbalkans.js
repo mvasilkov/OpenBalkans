@@ -6,13 +6,20 @@ const yargs = require('yargs')
 
 const { PEM } = require('./balkans/util')
 const { kdfInteractive } = require('./tools/interactive')
+const options = require('./tools/options')
+
+yargs.command('weblog', 'Weblog actions', argv => {
+    yargs.command('init <FILE>', 'Initialize weblog', yargs => {
+        options.accept(yargs, ['show', 'sk'])
+    }, argv => {
+        (argv.sk ? readPEM(argv.sk) : kdfInteractive(argv.show)).then(sk => {
+            console.log(sk)
+        })
+    }).demandCommand()
+})
 
 yargs.command('keygen', 'Save WarpWallet keys as PEM', yargs => {
-    yargs.option('show', {
-        alias: 'S',
-        describe: 'Show passwords',
-        type: 'boolean',
-    })
+    options.accept(yargs, ['show'])
 }, argv => {
     kdfInteractive(argv.show).then(sk => {
         const encoded = PEM.encodeKeyPair(sk)
@@ -22,10 +29,18 @@ yargs.command('keygen', 'Save WarpWallet keys as PEM', yargs => {
 })
 
 if (require.main === module) {
-    yargs.argv
+    yargs.demandCommand().argv
 }
 
 function writeFile(name, contents) {
     console.log('Writing', name)
     fs.writeFileSync(name, contents, { encoding: 'utf8' })
+}
+
+function readPEM(path) {
+    return new Promise((resolve, reject) => {
+        fs.readFile(path, { encoding: 'utf8' }, (err, contents) => {
+            err ? reject(err) : resolve(PEM.decodeSK(contents))
+        })
+    })
 }
