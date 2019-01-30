@@ -31,20 +31,30 @@ Special post types:
 
 | Type | Comment
 | --- | ---
-| ~init | Initial post (no parent)
-| ~upd_pk | Updated public key
-| ~collection | Collection of posts
+| upd_pk | Updated public key
+| collection | Collection of posts
 
 #### Data structure
 
 | Name | Type | Required | Comment
 | --- | --- | --- | ---
-| openbp | short | Yes | OpenBalkans protocol version
-| pid | [ObjectId][ObjectId] | Yes | Post OID, contains datetime
-| parent | tuple | Other than ~init | Parent OID, and SHA-256(parent JWT)
-| type | string | Yes | Media Type(docs contents) or special
-| docs | list | Other than ~init and ~upd_pk | One or more hyperlinks
-| check | string | Same as docs | SHA-256(docs contents)
-| pk | string | ~init and ~upd_pk | Compressed public key
+| openbp | int | Yes | OpenBalkans protocol version
+| pk | string | Yes | Post key
+| other | string | No | Other post key (In-Reply-To)
+| type | string | Yes | Media Type(contents) or special
+| docs | list | Other than upd_pk | One or more hyperlinks
+| check | string | Same as docs | SHA-256(contents)
+| size | int | Same as docs | Size of contents, bytes
+| upd_pk | string | upd_pk | Updated public key
+
+Public keys are stored in compressed form.
+
+#### Post key
+
+Post key is a concatenation of the following fields:
+
+* Base58([ObjectId][ObjectId])
+* U+002E FULL STOP
+* Base58(public key)
 
 [ObjectId]: https://docs.mongodb.com/manual/reference/method/ObjectId/
