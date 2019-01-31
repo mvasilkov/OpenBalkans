@@ -8,13 +8,14 @@
     "test": "node test/run"
   },
   "dependencies": {
+    "base-x": "^3.0.5",
     "bson": "^4.0.1",
     "jsonwebtoken": "^8.4.0",
     "pem-file": "^1.0.1",
     "scrypt-async": "^2.0.1"
   },
   "devDependencies": {
-    "prompts": "^2.0.0",
+    "prompts": "^2.0.1",
     "yargs": "^12.0.5"
   }
 }

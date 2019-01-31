@@ -57,4 +57,6 @@ Post key is a concatenation of the following fields:
 * U+002E FULL STOP
 * Base58(public key)
 
+We use Satoshi's variant of Base58.
+
 [ObjectId]: https://docs.mongodb.com/manual/reference/method/ObjectId/

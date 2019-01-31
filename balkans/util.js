@@ -1,5 +1,7 @@
 const assert = require('assert')
+const base58 = require('base-x')('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz')
 const crypto = require('crypto')
+const ObjectId = require('bson/lib/objectid')
 const pem = require('pem-file')
 
 const SK_SIZE = 32
@@ -69,4 +71,15 @@ exports.PEM = {
     encodeKeyPair,
     encodePK,
     encodeSK,
+}
+
+// Post key
+
+exports.encodePostKey = function encodePostKey(objectid, pk) {
+    return [objectid.id, pk].map(base58.encode).join('.')
+}
+
+exports.decodePostKey = function decodePostKey(a) {
+    const [buf, pk] = a.split('.').map(base58.decode)
+    return [new ObjectId(buf), pk]
 }
