@@ -38,14 +38,16 @@ Special post types:
 
 | Name | Type | Required | Comment
 | --- | --- | --- | ---
-| openbp | int | Yes | OpenBalkans protocol version
-| pk | string | Yes | Post key
-| other | string | No | Other post key (In-Reply-To)
-| type | string | Yes | Media Type(contents) or special
-| docs | list | Other than upd_pk | One or more hyperlinks
-| check | string | Same as docs | SHA-256(contents)
-| size | int | Same as docs | Size of contents, bytes
-| upd_pk | string | upd_pk | Updated public key
+| **openbp** | int | Yes | OpenBalkans protocol version
+| **pk** | string | Yes | Post key
+| **other** | object | No | Reply to other post
+| other.**pk** | string | Yes | Other post key (In-Reply-To)
+| other.**check** | string | Yes | SHA-256(other post JWT)
+| **type** | string | Yes | Media Type(contents) or special
+| **docs** | list | Other than upd_pk | One or more hyperlinks
+| **check** | string | Same as docs | SHA-256(contents)
+| **size** | int | Same as docs | Size of contents, bytes
+| **upd_pk** | string | upd_pk | Updated public key
 
 Public keys are stored in compressed form.
 
@@ -57,6 +59,9 @@ Post key is a concatenation of the following fields:
 * U+002E FULL STOP
 * Base58(public key)
 
-We use Satoshi's variant of Base58.
+We use Satoshi's variant of [Base58][Base58].
+
+Post keys are considered to be globally unique.
 
 [ObjectId]: https://docs.mongodb.com/manual/reference/method/ObjectId/
+[Base58]: https://github.com/bitcoin/bitcoin/blob/master/src/base58.cpp
