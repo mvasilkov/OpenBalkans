@@ -5,10 +5,9 @@ const ObjectId = require('bson/lib/objectid')
 const { PEM, getPK, encodePostKey, decodePostKey } = require('../balkans/util')
 const { kdf } = require('../balkans/warpwallet')
 
-const chickens = kdf('Chickens')
+const sk = kdf('Chickens')
 
 exports.testRoundTripPEM = function testRoundTripPEM() {
-    const sk = chickens
     const pk = getPK(sk)
     const encoded = PEM.encodeKeyPair(sk, pk)
     assert(PEM.decodePK(encoded.pk).equals(pk))
@@ -19,14 +18,13 @@ exports.testRoundTripPEM = function testRoundTripPEM() {
 }
 
 exports.testRoundTripJWT = function testRoundTripJWT() {
-    const encoded = PEM.encodeKeyPair(chickens)
+    const encoded = PEM.encodeKeyPair(sk)
     const token = jwt.sign({ a: 64 }, encoded.sk, { algorithm: 'ES256' })
     const props = jwt.verify(token, encoded.pk, { algorithms: ['ES256'] })
     assert(Object.is(props.a, 64))
 }
 
 exports.testCompressedJWT = function testCompressedJWT() {
-    const sk = chickens
     const pk = getPK(sk, true)
     assert(Object.is(pk.length, 33))
     const token = jwt.sign({ a: 64 }, PEM.encodeSK(sk), { algorithm: 'ES256' })
@@ -35,7 +33,7 @@ exports.testCompressedJWT = function testCompressedJWT() {
 }
 
 exports.testRoundTripPostKey = function testRoundTripPostKey() {
-    const pk = getPK(chickens, true)
+    const pk = getPK(sk, true)
     const objectid = new ObjectId
     const [a, b] = decodePostKey(encodePostKey(objectid, pk))
     assert(Object.is(objectid.id.compare(a.id), 0))
