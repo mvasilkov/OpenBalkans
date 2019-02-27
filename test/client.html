@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru-RU">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>OpenBalkans</title>
+        <link rel="stylesheet" href="/node_modules/systematize/build/systematize.min.css">
+        <link rel="stylesheet" href="/node_modules/systematize/build/addons.min.css">
+    </head>
+    <body>
+        <div class="container">
+            <article>
+                <h1>OpenBalkans</h1>
+                <p>
+                    <input type="text" placeholder="Passphrase" id="passphrase" style="font: -webkit-control">
+                    <input type="text" placeholder="Salt" id="salt" style="font: -webkit-control">
+                    <button id="compute" style="font: -webkit-control">Compute</button>
+                </p>
+            </article>
+        </div>
+        <script src="/client/build/balkans.js"></script>
+        <script>
+            const $ = a => document.getElementById(a)
+            $('compute').addEventListener('click', function onclick() {
+                const pwd = $('passphrase').value
+                const salt = $('salt').value
+
+                const worker = new Balkans.Worker('/client/build/web_workers.js')
+                worker.kdf(pwd, salt, function done(sk) {
+                    console.log(sk)
+                })
+            })
+        </script>
+    </body>
+</html>
