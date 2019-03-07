@@ -10,6 +10,10 @@ class Post {
         this.jwtString = jwtString
         this.objectid = objectid
     }
+
+    toString() {
+        return this.jwtString
+    }
 }
 
 Post.create = function create(sk, props) {

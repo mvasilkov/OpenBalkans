@@ -1,3 +1,9 @@
+const Post = require('../balkans/post')
+const util = require('../balkans/util')
+
+exports.Post = Post
+exports.util = util
+
 exports.Worker = class BalkansWorker {
     constructor(url) {
         this._worker = new Worker(url)

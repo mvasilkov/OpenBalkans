@@ -16,18 +16,44 @@
                     <input type="text" placeholder="Salt" id="salt" style="font: -webkit-control">
                     <button id="compute" style="font: -webkit-control">Compute</button>
                 </p>
+                <pre id="output" style="transform: scale(0.75); transform-origin: 0 0"></pre>
             </article>
         </div>
         <script src="/client/build/balkans.js"></script>
         <script>
             const $ = a => document.getElementById(a)
+
+            function print(a) {
+                const line = document.createElement('code')
+                line.appendChild(document.createTextNode(a + '\n'))
+                $('output').appendChild(line)
+            }
+
+            function printBuf(buf) {
+                print(Array.prototype.map.call(buf, a =>
+                    ('0' + a.toString(16)).substr(-2)).join(' '))
+            }
+
             $('compute').addEventListener('click', function onclick() {
                 const pwd = $('passphrase').value
                 const salt = $('salt').value
 
                 const worker = new Balkans.Worker('/client/build/web_workers.js')
                 worker.kdf(pwd, salt, function done(sk) {
-                    console.log(sk)
+                    print('Secret key:')
+                    printBuf(sk)
+
+                    const pk = Balkans.util.getPK(sk, true)
+                    print('Public key:')
+                    printBuf(pk)
+
+                    const pk2 = Balkans.util.getPK(sk, false)
+                    print('Public key (long):')
+                    printBuf(pk2)
+
+                    const post = Balkans.Post.create(sk, { a: 64 })
+                    print('Post({ a: 64 })')
+                    print(post.toString())
                 })
             })
         </script>
