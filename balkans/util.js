@@ -23,8 +23,17 @@ exports.getPK = function getPK(sk, short = false) {
 // PEM encode
 
 function encodePK(pk) {
-    if (pk.length < 64)
-        pk = crypto.ECDH.convertKey(pk, 'prime256v1')
+    if (pk.length < 64) {
+        if (crypto.ECDH) {
+            pk = crypto.ECDH.convertKey(pk, 'prime256v1')
+        }
+        else {
+            const curve = crypto.createECDH('prime256v1')
+            // curve.setPublicKey(pk)
+            curve.keys = curve.curve.keyFromPublic(pk)
+            pk = curve.getPublicKey(null, 'uncompressed')
+        }
+    }
     return pem.encode(Buffer.concat([ASN1_PK, pk]), PEM_PK)
 }
 
