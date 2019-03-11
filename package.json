@@ -1,6 +1,12 @@
 {
-  "name": "openbalkans",
+  "name": "balkans",
+  "version": "0.0.1",
   "description": "Internet Balkanization Appliance",
+  "files": [
+    "balkans",
+    "client"
+  ],
+  "main": "client/balkans.js",
   "repository": "git@github.com:mvasilkov/OpenBalkans.git",
   "author": "Mark Vasilkov (https://github.com/mvasilkov)",
   "license": "MIT",
@@ -9,7 +15,7 @@
   },
   "dependencies": {
     "base-x": "^3.0.5",
-    "bson": "^4.0.1",
+    "bson": "^4.0.2",
     "jsonwebtoken": "^8.5.0",
     "pem-file": "^1.0.1",
     "scrypt-async": "^2.0.1"
@@ -17,6 +23,6 @@
   "devDependencies": {
     "prompts": "^2.0.3",
     "systematize": "^3.2.4",
-    "yargs": "^13.2.1"
+    "yargs": "^13.2.2"
   }
 }
