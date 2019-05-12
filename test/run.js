@@ -3,26 +3,38 @@
 
 const fs = require('fs')
 
-function runTests(a) {
+const Balkans = [
+    { title: 'JavaScript', b: require('../balkans') },
+    { title: 'Node.js crypto', b: require('../nodejs_crypto') },
+]
+
+function runTests(balkans, a) {
     const tests = require('./' + a)
     for (let b in tests) {
         if (!b.startsWith('test') || typeof tests[b] != 'function')
             continue
 
         console.log(`\t* ${b}`)
-        tests[b]()
+        tests[b](balkans)
     }
 }
 
-function run() {
+function runSuite(balkans) {
     const files = fs.readdirSync(__dirname, { encoding: 'utf8' })
     for (let a of files) {
         if (!a.startsWith('test_') || !a.endsWith('.js'))
             continue
 
         console.log(`* ${a.substr(0, a.length - 3)}`)
-        runTests(a)
+        runTests(balkans, a)
     }
+}
+
+function run() {
+    Balkans.forEach(({ title, b }) => {
+        console.log(`${title}\n---`)
+        runSuite(b)
+    })
 }
 
 if (require.main === module) {
