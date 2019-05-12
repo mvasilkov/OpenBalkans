@@ -32,11 +32,14 @@ function runSuite(balkans) {
 
 function run() {
     Balkans.forEach(({ title, b }) => {
-        console.log(`${title}\n---`)
+        console.log(`--- ${title} ---`)
         runSuite(b)
     })
 }
 
 if (require.main === module) {
+    if (typeof TextEncoder == 'undefined') // node.js < 11
+        global.TextEncoder = require('util').TextEncoder
+
     run()
 }

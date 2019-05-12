@@ -10,7 +10,7 @@ exports.pbkdf2 = function pbkdf2(pwd, salt) {
 }
 
 exports.scrypt = function _scrypt(pwd, salt, purejs = false) {
-    if (!purejs) {
+    if (!purejs) { // node.js >= 10.5
         return crypto.scryptSync(pwd, salt, SK_SIZE, {
             N: 2 ** 18,
             r: 8,

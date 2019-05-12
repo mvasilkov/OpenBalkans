@@ -1,5 +1,7 @@
 const assert = require('assert')
 
+const { assertEqual, assertNotEqual } = require('./util')
+
 const chickens = 'Chickens'
 const chickensSk = 'f0547fab4470cc8c5c3ab32282be4795e81652e30fe02815564b376980684b7e'
 const salt = 'chickens@salt.org'
@@ -7,28 +9,6 @@ const saltSk = '1bd7e263cf0eee0cd5e19e0a65e361386b7a9e83c5e32bc0203b121c0015d335
 
 assert(chickensSk.length == 64)
 assert(saltSk.length == 64)
-
-function toString(buf) {
-    switch (buf.constructor.name) {
-        case 'Buffer':
-            return buf.toString('hex')
-
-        case 'String':
-            return buf
-
-        case 'Uint8Array':
-            return Array.from(buf).map(b => b.toString(16).padStart(2, '0')).join('')
-    }
-    throw Error(`Unknown buf: ${buf}`)
-}
-
-function assertEqual(a, b, err) {
-    assert(Object.is(toString(a), toString(b)), err)
-}
-
-function assertNotEqual(a, b, err) {
-    assert(!Object.is(toString(a), toString(b)), err)
-}
 
 exports.testWarpWallet = function testWarpWallet({ kdf }) {
     console.log('\t\tWith purejs not set')
