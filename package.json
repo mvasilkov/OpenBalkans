@@ -1,12 +1,13 @@
 {
   "name": "balkans",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Internet Balkanization Appliance",
   "files": [
     "balkans",
-    "client"
+    "client",
+    "nodejs_crypto"
   ],
-  "main": "client/balkans.js",
+  "main": "balkans/index.js",
   "repository": "git@github.com:mvasilkov/OpenBalkans.git",
   "author": "Mark Vasilkov (https://github.com/mvasilkov)",
   "license": "MIT",
