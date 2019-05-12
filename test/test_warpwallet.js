@@ -13,37 +13,46 @@ function toString(buf) {
         case 'Buffer':
             return buf.toString('hex')
 
+        case 'String':
+            return buf
+
         case 'Uint8Array':
             return Array.from(buf).map(b => b.toString(16).padStart(2, '0')).join('')
     }
     throw Error(`Unknown buf: ${buf}`)
 }
 
+function assertEqual(a, b, err) {
+    assert(Object.is(toString(a), toString(b)), err)
+}
+
+function assertNotEqual(a, b, err) {
+    assert(!Object.is(toString(a), toString(b)), err)
+}
+
 exports.testWarpWallet = function testWarpWallet({ kdf }) {
-    console.log('\t\tWith purejs = false')
-    assert(Object.is(toString(kdf(chickens)), chickensSk))
-    assert(Object.is(toString(kdf(chickens, salt)), saltSk))
+    console.log('\t\tWith purejs not set')
+    assertEqual(kdf(chickens), chickensSk)
+    assertEqual(kdf(chickens, salt), saltSk)
 
     if (kdf.toString().includes('purejs')) {
         console.log('\t\tWith purejs = true')
-        assert(Object.is(toString(kdf(chickens, '', true)), chickensSk))
-        assert(Object.is(toString(kdf(chickens, salt, true)), saltSk))
+        assertEqual(kdf(chickens, '', true), chickensSk)
+        assertEqual(kdf(chickens, salt, true), saltSk)
     }
 
     // bad path
-    assert(!Object.is(toString(kdf(chickens + ' ')), chickensSk))
-    assert(!Object.is(toString(kdf(chickens, salt + ' ')), saltSk))
+    assertNotEqual(kdf(chickens + ' '), chickensSk)
+    assertNotEqual(kdf(chickens, salt + ' '), saltSk)
 }
 
 const c1 = 'Chicke\u00f1s' // 'Chickeñs'.length == 8
 const c2 = 'Chicken\u0303s' // 'Chickeñs'.length == 9
 
 exports.testWarpWalletNFC = function testWarpWalletNFC({ kdf }) {
-    assert(Object.is(toString(kdf(c1)), toString(kdf(c2))),
-        'Should normalize passphrase')
-    assert(Object.is(toString(kdf(chickens, c1)), toString(kdf(chickens, c2))),
-        'Should normalize salt')
+    assertEqual(kdf(c1), kdf(c2), 'Should normalize passphrase')
+    assertEqual(kdf(chickens, c1), kdf(chickens, c2), 'Should normalize salt')
 
     // bad path
-    assert(!Object.is(toString(kdf(chickens)), toString(kdf(c1))))
+    assertNotEqual(kdf(chickens), kdf(c1))
 }
