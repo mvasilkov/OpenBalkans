@@ -7,3 +7,8 @@ exports.getPublicKey = function getPublicKey(sk, short = false) {
     curve.setPrivateKey(sk)
     return curve.getPublicKey(null, short ? 'compressed' : 'uncompressed')
 }
+
+exports.longPublicKey = function longPublicKey(pk) {
+    if (pk.length < 64) return crypto.ECDH.convertKey(pk, 'prime256v1')
+    return pk
+}

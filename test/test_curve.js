@@ -8,3 +8,8 @@ exports.testGetPublicKey = function testGetPublicKey({ getPublicKey }) {
     assertEqual(getPublicKey(sk), pk)
     assertEqual(getPublicKey(sk, true), pkShort)
 }
+
+exports.testLongPublicKey = function testLongPublicKey({ longPublicKey }) {
+    assertEqual(longPublicKey(pk), pk)
+    assertEqual(longPublicKey(pkShort), pk)
+}

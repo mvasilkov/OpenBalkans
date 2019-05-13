@@ -1,7 +1,8 @@
-const { getPublicKey } = require('./util/curve')
+const { getPublicKey, longPublicKey } = require('./util/curve')
 const { kdf } = require('./warpwallet')
 
 module.exports = {
     getPublicKey,
+    longPublicKey,
     kdf,
 }
