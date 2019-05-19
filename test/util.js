@@ -5,6 +5,9 @@ exports.toString = function toString(buf) {
         case 'Buffer':
             return buf.toString('hex')
 
+        case 'ObjectId':
+            return buf.toString()
+
         case 'String':
             return buf
 

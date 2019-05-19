@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 const { assertEqual } = require('./util')
 const { kdf } = require('../balkans/warpwallet')
 
-const sk = kdf('PEM')
+const sk = exports.sk = kdf('PEM')
 
 exports.testRoundTripPEM = function testRoundTripPEM({ getPublicKey, PEM }) {
     const pk = getPublicKey(sk)
