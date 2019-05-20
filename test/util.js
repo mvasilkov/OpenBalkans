@@ -1,3 +1,5 @@
+'use strict'
+
 const assert = require('assert')
 
 exports.toString = function toString(buf) {

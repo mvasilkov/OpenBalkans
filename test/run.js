@@ -8,33 +8,33 @@ const Balkans = [
     { title: 'Node.js crypto', b: require('../nodejs_crypto') },
 ]
 
-function runTests(balkans, a) {
+async function runTests(balkans, a) {
     const tests = require('./' + a)
-    for (let b in tests) {
+    for (const b in tests) {
         if (!b.startsWith('test') || typeof tests[b] != 'function')
             continue
 
         console.log(`\t* ${b}`)
-        tests[b](balkans)
+        await tests[b](balkans)
     }
 }
 
-function runSuite(balkans) {
+async function runSuite(balkans) {
     const files = fs.readdirSync(__dirname, { encoding: 'utf8' })
-    for (let a of files) {
+    for (const a of files) {
         if (!a.startsWith('test_') || !a.endsWith('.js'))
             continue
 
         console.log(`* ${a.substr(0, a.length - 3)}`)
-        runTests(balkans, a)
+        await runTests(balkans, a)
     }
 }
 
-function run() {
-    Balkans.forEach(({ title, b }) => {
+async function run() {
+    for (const { title, b } of Balkans) {
         console.log(`--- ${title} ---`)
-        runSuite(b)
-    })
+        await runSuite(b)
+    }
 }
 
 if (require.main === module) {

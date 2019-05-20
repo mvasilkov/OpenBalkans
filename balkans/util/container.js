@@ -5,7 +5,7 @@ const pem = require('pem-file')
 const ASN1_PK = Buffer.from([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0])
 const ASN1_SK_1 = Buffer.from([48, 119, 2, 1, 1, 4, 32])
 const ASN1_SK_2 = Buffer.from([160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 161, 68, 3, 66, 0])
-const ASN1_SK_END = ASN1_SK_1.length + 32
+const ASN1_SK_END = ASN1_SK_1.length + 32 // Length of the private key
 
 const PEM_PK = 'PUBLIC KEY'
 const PEM_SK = 'EC PRIVATE KEY'

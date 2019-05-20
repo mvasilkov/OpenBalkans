@@ -1,3 +1,5 @@
+'use strict'
+
 const ObjectId = require('bson/lib/objectid')
 
 const { assertEqual } = require('./util')

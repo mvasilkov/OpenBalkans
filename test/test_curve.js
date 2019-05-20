@@ -1,3 +1,5 @@
+'use strict'
+
 const { assertEqual } = require('./util')
 
 const sk = Buffer.from('abad85e1858e6aeab1179a4408b6dc1e77bd17f15233dd3fbaaa7e3338ff346a', 'hex')
