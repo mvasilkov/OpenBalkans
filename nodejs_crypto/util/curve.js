@@ -9,6 +9,6 @@ exports.getPublicKey = function getPublicKey(sk, short = false) {
 }
 
 exports.longPublicKey = function longPublicKey(pk) {
-    if (pk.length < 64) return crypto.ECDH.convertKey(pk, 'prime256v1')
+    if (pk.length < 64) return crypto.ECDH.convertKey(pk, 'prime256v1') // node.js >= 10
     return pk
 }
