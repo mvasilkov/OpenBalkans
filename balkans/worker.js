@@ -14,7 +14,7 @@ exports.WorkerClient = class WorkerClient {
 
     workerInvoke(options) {
         return new Promise(resolve => {
-            function handler({ data }) {
+            const handler = ({ data }) => {
                 this.worker.removeEventListener('message', handler)
                 resolve(data)
             }

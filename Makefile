@@ -1,7 +1,17 @@
-client: client/build/balkans.js client/build/web_workers.js
+client := ./client/balkans.js
+client_out := ./client/build/balkans.js
+worker := ./client/balkans.worker.js
+worker_out := ./client/build/balkans.worker.js
 
-client/build/balkans.js: client/balkans.js
-	browserify client/balkans.js --standalone Balkans | terser -c -o client/build/balkans.js
+.PHONY: client
+client:
+	webpack $(client) -o $(client_out) \
+		--output-library Balkans --output-library-target=umd \
+		--module-bind js=babel-loader --mode production \
+		--target web --display-modules
 
-client/build/web_workers.js: client/web_workers.js
-	browserify client/web_workers.js | terser -c -o client/build/web_workers.js
+	webpack $(worker) -o $(worker_out) \
+		--module-bind js=babel-loader --mode production \
+		--target web --display-modules
+
+	node client/build/clean.js
