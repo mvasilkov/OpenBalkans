@@ -24,6 +24,6 @@
     "scrypt-async": "^2.0.1"
   },
   "devDependencies": {
-    "systematize": "^3.2.4"
+    "systematize": "^3.3.0"
   }
 }
