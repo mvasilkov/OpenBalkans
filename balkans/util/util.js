@@ -1,7 +1,7 @@
 'use strict'
 
 const base58 = require('base-x')('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz')
-const ObjectId = require('bson/lib/objectid')
+const ObjectId = require('cwb/objectid')
 
 // Post key
 

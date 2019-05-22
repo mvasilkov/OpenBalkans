@@ -1,6 +1,6 @@
 'use strict'
 
-const ObjectId = require('bson/lib/objectid')
+const ObjectId = require('cwb/objectid')
 
 const { assertEqual } = require('./util')
 const { sk } = require('./test_container')

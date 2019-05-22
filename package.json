@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "base-x": "^3.0.5",
-    "bson": "^4.0.2",
+    "cwb": "*",
     "elliptic": "^6.4.1",
     "fast-sha256": "^1.1.0",
     "jsonwebtoken": "^8.5.1",
@@ -24,6 +24,9 @@
     "scrypt-async": "^2.0.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "babel-loader": "^8.0.6",
     "systematize": "^3.3.0"
   }
 }

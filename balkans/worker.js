@@ -1,7 +1,7 @@
 'use strict'
 
-const { CriticalSection } = require('../util/critical_section')
-const { kdf } = require('../warpwallet')
+const { CriticalSection } = require('./util/critical_section')
+const { kdf } = require('./warpwallet')
 
 exports.WorkerClient = class WorkerClient {
     constructor(url) {
