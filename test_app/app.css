@@ -1,4 +1,6 @@
 #output {
     transform: scale(0.75);
     transform-origin: 0 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
