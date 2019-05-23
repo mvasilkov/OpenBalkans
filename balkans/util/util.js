@@ -3,6 +3,8 @@
 const base58 = require('base-x')('123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz')
 const ObjectId = require('cwb/objectid')
 
+exports.base58 = base58
+
 // Post key
 
 exports.encodePostKey = function encodePostKey(objectid, pk) {
