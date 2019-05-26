@@ -8,6 +8,7 @@ client:
 	webpack $(client) -o $(client_out) \
 		--output-library Balkans --output-library-target=umd \
 		--module-bind js=babel-loader --mode production \
+		--resolve-alias jwa=jwa-purejs \
 		--target web --display-modules
 
 	webpack $(worker) -o $(worker_out) \
