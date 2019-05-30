@@ -30,3 +30,11 @@ exports.testPostCycle = function testPostCycle({ ObjectId, getPublicKey, encodeP
     assert(Object.is(a.props.other, b.props.pk))
     assert(Object.is(b.props.other, a.props.pk))
 }
+
+exports.testNoTypeIssuedAt = function testNoTypeIssuedAt({ Post }) {
+    const post = Post.create(sk, { a: 64 })
+    const decoded = jwt.decode(post.toString(), { complete: true })
+    assert(Object.is(decoded.header.hasOwnProperty('typ'), false))
+    assert(Object.is(decoded.payload.hasOwnProperty('iat'), false))
+    assert(Object.is(decoded.payload.a, 64))
+}

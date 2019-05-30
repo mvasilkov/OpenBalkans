@@ -27,6 +27,7 @@ module.exports = ({ getPublicKey, PEM }) => {
             objectid = new ObjectId
         }
         props.pk = encodePostKey(objectid, getPublicKey(sk, true))
+        props = JSON.stringify(props)
         const jwtString = jwt.sign(props, PEM.encodePrivateKey(sk), { algorithm: 'ES256' })
         return new Post(jwtString)
     }

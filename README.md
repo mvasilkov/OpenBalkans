@@ -23,6 +23,11 @@ Signing: ECDSA using P-256 curve, and SHA-256 (ES256)
 
 Key derivation function (KDF): [WarpWallet](https://keybase.io/warp)
 
+**ASCII Armor**
+
+- Post key: Base58
+- Other binary data: [RFC 4648](https://tools.ietf.org/html/rfc4648) base64url
+
 #### Post types
 
 Post types are a strict superset of [RFC 2046](https://tools.ietf.org/html/rfc2046) Media Types.
