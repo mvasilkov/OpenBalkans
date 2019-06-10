@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "base-x": "^3.0.5",
+    "base64url": "^3.0.1",
     "cwb": "*",
     "elliptic": "^6.4.1",
     "fast-sha256": "^1.1.0",
