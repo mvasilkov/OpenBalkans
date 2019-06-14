@@ -1,6 +1,12 @@
 'use strict'
 
 const $ = a => document.getElementById(a)
+const worker = new Balkans.WorkerClient('/client/build/balkans.worker.js')
+
+function clear() {
+    const out = $('output')
+    while (out.firstChild) out.removeChild(out.firstChild)
+}
 
 function print(a = '') {
     const line = document.createElement('code')
@@ -16,8 +22,9 @@ $('compute').addEventListener('click', _ => {
     const pwd = $('passphrase').value
     const salt = $('salt').value
 
-    const worker = new Balkans.WorkerClient('/client/build/balkans.worker.js')
     worker.kdf(pwd, salt).then(sk => {
+        clear()
+
         print('Private key:')
         printBuf(sk)
         print()
@@ -44,5 +51,20 @@ $('compute').addEventListener('click', _ => {
         const post = Balkans.Post.create(sk, { a: 64 })
         print('Post({ a: 64 })')
         print(post.toString())
+    })
+})
+
+$('sha256').addEventListener('click', _ => {
+    const contents = $('contents').value
+
+    worker.sha256(contents).then(b => {
+        clear()
+
+        print('SHA-256:')
+        printBuf(b)
+        print()
+
+        print('base64url(SHA-256):')
+        print(Balkans.base64url.encode(b))
     })
 })
