@@ -6,6 +6,7 @@ const { PEM } = require('../balkans/util/container')({ getPublicKey, longPublicK
 const { Post } = require('../balkans/post')({ getPublicKey, PEM })
 const { base58, base64url, decodePostKey, encodePostKey } = require('../balkans/util/util')
 const { kdf } = require('./warpwallet')
+const { sha256 } = require('./util/sha256')
 const { WorkerClient } = require('../balkans/worker')
 
 module.exports = {
@@ -20,5 +21,6 @@ module.exports = {
     PEM,
     Post,
     kdf,
+    sha256,
     WorkerClient,
 }

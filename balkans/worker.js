@@ -1,8 +1,7 @@
 'use strict'
 
-const sha256 = require('fast-sha256')
-
 const { CriticalSection } = require('./util/critical_section')
+const { sha256 } = require('./util/sha256')
 const { kdf } = require('./warpwallet')
 
 exports.WorkerClient = class WorkerClient {
@@ -39,8 +38,6 @@ exports.WorkerClient = class WorkerClient {
 }
 
 exports.setupWorker = function setupWorker() {
-    const enc = new TextEncoder
-
     addEventListener('message', ({ data: options }) => {
         const fun = options.shift()
         switch (fun) {
@@ -49,8 +46,7 @@ exports.setupWorker = function setupWorker() {
                 break
 
             case 'sha256':
-                const a = typeof options[0] == 'string' ? enc.encode(options[0]) : options[0]
-                postMessage(sha256(a))
+                postMessage(sha256(options[0]))
                 break
 
             default:

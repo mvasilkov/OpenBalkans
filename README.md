@@ -75,3 +75,7 @@ Post keys are considered to be globally unique. Any collisions should be treated
 
 [ObjectId]: https://docs.mongodb.com/manual/reference/method/ObjectId/
 [Base58]: https://github.com/bitcoin/bitcoin/blob/master/src/base58.cpp
+
+### User Profiles
+
+A user profile is a [JSON-LD](https://json-ld.org/) post of @type [Person](https://schema.org/Person).
