@@ -1,14 +1,19 @@
 # OpenBalkans
 
-Internet Balkanization Appliance
+Internet Balkanization Appliance Creation Kit
 
 ## Overview
 
-Internet Balkanization Appliance (IBA) is an implementation of the OpenBalkans protocol.
+Internet Balkanization Appliance (IBA) is an implementation of the OpenBalkans protocol,
+which can manifest as a website, a standalone application, or an actual physical appliance
+(although there are no known instances of this yet).
 
-IBA is a collection of personal weblogs. A weblog is a series of posts.
+From the user's perspective, an IBA is a collection of weblogs. A weblog is a series of posts.
+Conceptually this is similar to Mastodon, but decentralized (as opposed to federated).
 
 This document describes the OpenBalkans protocol (OpenBP) version 0.
+
+[API documentation](https://github.com/mvasilkov/OpenBalkans/tree/master/docs)
 
 ### Posts
 
@@ -66,7 +71,7 @@ Post key is a concatenation of the following fields:
 
 We use Satoshi's variant of [Base58][Base58].
 
-Post keys are considered to be globally unique.
+Post keys are considered to be globally unique. Any collisions should be treated as a flood attack.
 
 [ObjectId]: https://docs.mongodb.com/manual/reference/method/ObjectId/
 [Base58]: https://github.com/bitcoin/bitcoin/blob/master/src/base58.cpp
