@@ -69,6 +69,17 @@ Post keys are considered to be globally unique. Any collisions should be treated
 
 ### Hyperlinks
 
+Links in the **docs** field can be the following:
+
+- HTTP(S) URL
+- [RFC 2397](https://tools.ietf.org/html/rfc2397) Data URL
+- [RFC 6901](https://tools.ietf.org/html/rfc6901) JSON Pointer
+  ```
+  "": "jsonpointer",
+  "url": "https://httpbin.org/headers",
+  "pointer": "/headers/User-Agent"
+  ```
+
 ### Relational tags
 
 | Rel | Type | Comment
