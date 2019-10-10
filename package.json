@@ -6,6 +6,9 @@
   "repository": "git@github.com:mvasilkov/OpenBalkans.git",
   "author": "Mark Vasilkov (https://github.com/mvasilkov)",
   "license": "MIT",
+  "scripts": {
+    "test": "node test/run"
+  },
   "dependencies": {
     "@xtuc/long": "^4.2.2",
     "buffer": "^5.4.3"
