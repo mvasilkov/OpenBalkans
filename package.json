@@ -1,0 +1,13 @@
+{
+  "name": "balkans",
+  "version": "0.2.0",
+  "description": "Internet Balkanization Appliance Creation Kit",
+  "main": "openbp/openbp.js",
+  "repository": "git@github.com:mvasilkov/OpenBalkans.git",
+  "author": "Mark Vasilkov (https://github.com/mvasilkov)",
+  "license": "MIT",
+  "dependencies": {
+    "@xtuc/long": "^4.2.2",
+    "buffer": "^5.4.3"
+  }
+}
