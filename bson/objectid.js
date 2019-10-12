@@ -1,7 +1,7 @@
 'use strict';
 
 const Buffer = require('buffer').Buffer;
-let randomBytes = require('./parser/utils').randomBytes;
+const randomBytes = require('tweetnacl').randomBytes;
 
 // constants
 const PROCESS_UNIQUE = randomBytes(5);
