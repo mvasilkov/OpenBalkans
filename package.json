@@ -12,6 +12,10 @@
   "dependencies": {
     "@xtuc/long": "^4.2.2",
     "buffer": "^5.4.3",
+    "fast-sha256": "^1.1.1",
     "tweetnacl": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/bson": "^4.0.0"
   }
 }

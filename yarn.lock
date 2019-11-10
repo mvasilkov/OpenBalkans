@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+"@types/bson@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@types/bson/-/bson-4.0.0.tgz#9073772679d749116eb1dfca56f8eaac6d59cc7a"
+  integrity sha512-pq/rqJwJWkbS10crsG5bgnrisL8pML79KlMKQMoQwLUjlPAkrUHMvHJ3oGwE7WHR61Lv/nadMwXVAD2b+fpD8Q==
+  dependencies:
+    "@types/node" "*"
+
+"@types/node@*":
+  version "12.12.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.7.tgz#01e4ea724d9e3bd50d90c11fd5980ba317d8fa11"
+  integrity sha512-E6Zn0rffhgd130zbCbAr/JdXfXkoOUFAKNs/rF8qnafSJ8KYaA/j3oz7dcwal+lYjLA7xvdd5J4wdYpCTlP8+w==
+
 "@xtuc/long@^4.2.2":
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/@xtuc/long/-/long-4.2.2.tgz#d291c6a4e97989b5c61d9acf396ae4fe133a718d"
@@ -19,6 +31,11 @@ buffer@^5.4.3:
   dependencies:
     base64-js "^1.0.2"
     ieee754 "^1.1.4"
+
+fast-sha256@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/fast-sha256/-/fast-sha256-1.1.1.tgz#2a1fca6a7fd0943da478f17760d19cf52ba78dea"
+  integrity sha512-CKUjAtRhTHaLueE7eUPX4009H7yMZxxBWHYxvzCn3WySKza5+S5EknF86zpOzF4Is4/qNUzbrhtC19gUMzCUdQ==
 
 ieee754@^1.1.4:
   version "1.1.13"

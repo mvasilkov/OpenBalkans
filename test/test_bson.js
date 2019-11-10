@@ -1,21 +1,26 @@
 'use strict'
 
-const assert = require('assert')
+const assert = require('assert').strict
 const { Buffer } = require('buffer')
 
-const BSON = require('../bson/bson')
+const bson = require('../bson/bson')
+const Binary = require('../bson/binary')
 const ObjectId = require('../bson/objectid')
 
 exports.testBuffer = function testBuffer() {
     const buf = Buffer.from('hello, world', 'utf8')
-    const a = BSON.serialize({ buf })
-    const b = BSON.deserialize(a).buf
+    const a = bson.serialize({ buf })
+    const b = bson.deserialize(a).buf
+
+    assert(b instanceof Binary)
     assert(buf.equals(b.buffer))
 }
 
 exports.testObjectId = function testObjectId() {
     const obj = new ObjectId
-    const a = BSON.serialize({ obj })
-    const b = BSON.deserialize(a).obj
+    const a = bson.serialize({ obj })
+    const b = bson.deserialize(a).obj
+
+    assert(b instanceof ObjectId)
     assert.strictEqual(obj.toString(), b.toString())
 }
