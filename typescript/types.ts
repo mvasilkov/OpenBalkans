@@ -6,8 +6,10 @@ import { digestLength } from 'fast-sha256'
 
 import bson, { ObjectId, Binary } from '../bson/bson'
 
-interface IEncodable {
+interface IEncodable<T> {
     encode(): Buffer
+    // static decode(buf: Buffer): T
+    equals(other: T): boolean
 }
 
 interface IPostRefOptions {
@@ -26,7 +28,7 @@ interface ISignatureOptions {
     Ed: Buffer
 }
 
-export class PostRef implements IEncodable, IPostRefOptions {
+export class PostRef implements IEncodable<PostRef>, IPostRefOptions {
     /** Public key */
     readonly Pk: Buffer
     /** ObjectId */
@@ -45,6 +47,8 @@ export class PostRef implements IEncodable, IPostRefOptions {
         this.Pk = Pk
         this.Id = Id
         this.Dig = Dig
+
+        Object.freeze(this)
     }
 
     encode(): Buffer {
@@ -64,8 +68,9 @@ export class PostRef implements IEncodable, IPostRefOptions {
     }
 }
 
-export class PostRefCollection implements IEncodable {
+export class PostRefCollection implements IEncodable<PostRefCollection> {
     constructor(readonly collection: PostRef[]) {
+        Object.freeze(this)
     }
 
     encode(): Buffer {
@@ -88,7 +93,7 @@ export class PostRefCollection implements IEncodable {
     }
 }
 
-export class Signature implements IEncodable, ISignatureOptions {
+export class Signature implements IEncodable<Signature>, ISignatureOptions {
     /** Public key */
     readonly Pk: Buffer
     /** Ed25519 signature */
@@ -103,6 +108,8 @@ export class Signature implements IEncodable, ISignatureOptions {
 
         this.Pk = Pk
         this.Ed = Ed
+
+        Object.freeze(this)
     }
 
     encode(): Buffer {
