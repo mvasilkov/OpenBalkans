@@ -56,6 +56,36 @@ export class PostRef implements IEncodable, IPostRefOptions {
         const { Pk, Id, Dig } = bson.deserialize(buf)
         return new PostRef({ Pk, Id, Dig })
     }
+
+    equals(other: PostRef): boolean {
+        return this.Pk.equals(other.Pk) &&
+            this.Id.toString() === other.Id.toString() &&
+            this.Dig.equals(other.Dig)
+    }
+}
+
+export class PostRefCollection implements IEncodable {
+    constructor(readonly collection: PostRef[]) {
+    }
+
+    encode(): Buffer {
+        return Buffer.concat(this.collection.map(a => bson.serialize(a)))
+    }
+
+    static decode(buf: Buffer): PostRefCollection {
+        const options: IPostRefOptions[] = []
+
+        let p = 0
+        while (p < buf.length)
+            p = bson.deserializeStream(buf, p, 1, options, options.length)
+
+        return new PostRefCollection(options.map(a => new PostRef(a)))
+    }
+
+    equals(other: PostRefCollection): boolean {
+        return this.collection.length === other.collection.length &&
+            this.collection.every((a, p) => a.equals(other.collection[p]))
+    }
 }
 
 export class Signature implements IEncodable, ISignatureOptions {
@@ -83,6 +113,10 @@ export class Signature implements IEncodable, ISignatureOptions {
     static decode(buf: Buffer): Signature {
         const { Pk, Ed } = bson.deserialize(buf)
         return new Signature({ Pk, Ed })
+    }
+
+    equals(other: Signature): boolean {
+        return this.Pk.equals(other.Pk) && this.Ed.equals(other.Ed)
     }
 }
 
