@@ -21,3 +21,9 @@ exports.testEquals = function testEquals() {
     assert.strictEqual(REF_A.equals(REF_A), true)
     assert.strictEqual(REF_A.equals(REF_B), false)
 }
+
+exports.testFreeze = function testFreeze() {
+    assert.throws(function () { REF_A.Pk = REF_B.Pk }, /Cannot assign to read only property/)
+    assert.throws(function () { REF_A.Id = REF_B.Id }, /Cannot assign to read only property/)
+    assert.throws(function () { REF_A.Dig = REF_B.Dig }, /Cannot assign to read only property/)
+}

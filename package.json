@@ -16,6 +16,6 @@
     "tweetnacl": "^1.0.1"
   },
   "devDependencies": {
-    "@types/bson": "^4.0.0"
+    "@types/bson": "^4.0.1"
   }
 }

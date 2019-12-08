@@ -22,5 +22,6 @@ exports.testObjectId = function testObjectId() {
     const b = bson.deserialize(a).obj
 
     assert(b instanceof ObjectId)
+    assert(/^[0-9a-f]{24}$/.test('' + b))
     assert.strictEqual(obj.toString(), b.toString())
 }
