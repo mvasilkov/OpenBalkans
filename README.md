@@ -22,6 +22,17 @@ EncodedPostRef = bson_encode(PostRef)
 
 ### Post
 
+| Field | Type | Required | Što
+| --- | --- | --- | ---
+| Pv | number | Yes | Protocol version
+| Id | ObjectId | Yes | [ObjectId][ObjectId]
+| Con | Document[] | Yes | Contents
+| Typ | string | Yes | [RFC 6838][MediaType] Media Type
+| Sz | number | Yes | Size, octets
+| Dig | Buffer | Yes | SHA256 digest
+| Wha | string | No | What is this post
+| Ref | PostRef | No | Other post
+
 ### Signature
 
 | Field | Type | Required | Što
@@ -38,3 +49,4 @@ EncodedPostRef = bson_encode(PostRef)
 | Dig | Buffer | Yes | SHA256 digest
 
 [ObjectId]: https://docs.mongodb.com/manual/reference/bson-types/index.html#objectid
+[MediaType]: https://tools.ietf.org/html/rfc6838

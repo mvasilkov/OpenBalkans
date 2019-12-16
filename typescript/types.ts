@@ -12,6 +12,30 @@ interface IEncodable<T> {
     equals(other: T): boolean
 }
 
+interface IDocumentOptions {
+    /** Loader */
+    Ld: string
+}
+
+interface IPostOptions {
+    /** Protocol version */
+    Pv: number
+    /** ObjectId */
+    Id: ObjectId
+    /** Contents */
+    Con: Document[]
+    /** Media Type */
+    Typ: string
+    /** Size, octets */
+    Sz: number
+    /** SHA256 digest */
+    Dig: Buffer
+    /** What is this */
+    Wha?: string
+    /** Other post */
+    Ref?: PostRef
+}
+
 interface IPostRefOptions {
     /** Public key */
     Pk: Buffer
@@ -26,6 +50,17 @@ interface ISignatureOptions {
     Pk: Buffer
     /** Ed25519 signature */
     Ed: Buffer
+}
+
+export class Document implements IDocumentOptions {
+    /** Loader */
+    readonly Ld: string
+
+    constructor({ Ld }: IDocumentOptions) {
+        this.Ld = Ld
+
+        Object.freeze(this)
+    }
 }
 
 export class PostRef implements IEncodable<PostRef>, IPostRefOptions {
