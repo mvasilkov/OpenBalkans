@@ -50,3 +50,4 @@ EncodedPostRef = bson_encode(PostRef)
 
 [ObjectId]: https://docs.mongodb.com/manual/reference/bson-types/index.html#objectid
 [MediaType]: https://tools.ietf.org/html/rfc6838
+[JSONPointer]: https://tools.ietf.org/html/rfc6901

@@ -12,10 +12,30 @@ interface IEncodable<T> {
     equals(other: T): boolean
 }
 
-interface IDocumentOptions {
+interface IDocumentBuf {
     /** Loader */
-    Ld: string
+    Ld: 'Buf'
+    /** Contents */
+    Buf: Buffer
 }
+
+interface IDocumentWeb {
+    /** Loader */
+    Ld: 'Web'
+    /** Web address (http|https) */
+    Web: string
+}
+
+interface IDocumentJSON {
+    /** Loader */
+    Ld: 'JSON'
+    /** Web address (http|https) */
+    Web: string
+    /** Reference tokens */
+    Ref: string[]
+}
+
+type IDocumentOptions = IDocumentBuf | IDocumentWeb | IDocumentJSON
 
 interface IPostOptions {
     /** Protocol version */
@@ -52,12 +72,34 @@ interface ISignatureOptions {
     Ed: Buffer
 }
 
-export class Document implements IDocumentOptions {
+export class Document /* implements IDocumentOptions */ {
     /** Loader */
-    readonly Ld: string
+    readonly Ld: IDocumentOptions['Ld']
+    /** [Ld=Buf] Contents */
+    readonly Buf?: Buffer
+    /** [Ld=Web|JSON] Web address (http|https) */
+    readonly Web?: string
+    /** [Ld=JSON] Reference tokens */
+    readonly Ref?: string[]
 
-    constructor({ Ld }: IDocumentOptions) {
-        this.Ld = Ld
+    constructor(options: IDocumentOptions) {
+        this.Ld = options.Ld
+
+        switch (options.Ld) {
+            case 'Buf':
+                this.Buf = options.Buf
+                break
+
+            case 'JSON':
+                this.Ref = options.Ref
+
+            case 'Web':
+                this.Web = options.Web
+                break
+
+            default:
+                explode('Ld', options)
+        }
 
         Object.freeze(this)
     }
@@ -160,6 +202,10 @@ export class Signature implements IEncodable<Signature>, ISignatureOptions {
     equals(other: Signature): boolean {
         return this.Pk.equals(other.Pk) && this.Ed.equals(other.Ed)
     }
+}
+
+function explode(a: string, b: never): never {
+    throw Error(`Bad ${a}: ${b[a]}`)
 }
 
 function toBuffer(a: Buffer | Binary): Buffer {
