@@ -44,10 +44,12 @@ interface IPostOptions {
     Id: ObjectId
     /** Contents */
     Con: Document[]
-    /** Media Type */
-    Typ: string
     /** Size, octets */
     Sz: number
+    /** Media Type */
+    Typ: string
+    /** Encoding */
+    Enc?: string
     /** SHA256 digest */
     Dig: Buffer
     /** What is this */
