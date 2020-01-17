@@ -7,7 +7,7 @@
   "author": "Mark Vasilkov (https://github.com/mvasilkov)",
   "license": "MIT",
   "scripts": {
-    "test": "node test/run"
+    "test": "smol test"
   },
   "dependencies": {
     "@xtuc/long": "^4.2.2",
@@ -16,6 +16,7 @@
     "tweetnacl": "^1.0.1"
   },
   "devDependencies": {
-    "@types/bson": "^4.0.1"
+    "@types/bson": "^4.0.1",
+    "smoltest": "^1.0.0"
   }
 }

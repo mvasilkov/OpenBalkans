@@ -66,6 +66,8 @@ EncodedPostRef = bson_encode(PostRef)
 | Web | string | Yes | Web address (http¦https)
 | Ref | string[] | Yes | Reference tokens
 
+Ref is a [RFC 6901][JSONPointer] JSON Pointer sequence with no ~encoding.
+
 ### PostRef
 
 | Field | Type | Required | Što
