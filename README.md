@@ -4,6 +4,11 @@ OpenBalkans
 Data structure
 ---
 
+### Media types
+
+- application/x.bson
+- application/x.bson-concat
+
 ### Data types
 
 | Node.js | Python 3 | C
@@ -13,12 +18,17 @@ Data structure
 ### EncodedPost
 
 EncodedPost :: Buffer  
-EncodedPost = bson_encode(Post) ++ bson_encode(Signature)
+EncodedPost = concat(bson_encode(Post), bson_encode(Signature))
 
 ### EncodedPostRef
 
 EncodedPostRef :: Buffer  
 EncodedPostRef = bson_encode(PostRef)
+
+### Collection
+
+Collection :: Buffer  
+Collection (T) = concat(T[])
 
 ### Post
 
@@ -74,7 +84,7 @@ Ref is a [RFC 6901][JSONPointer] JSON Pointer sequence with no ~encoding.
 | --- | --- | --- | ---
 | Pk | Buffer | Yes | Public key
 | Id | ObjectId | Yes | [ObjectId][ObjectId]
-| Dig | Buffer | Yes | SHA256 digest
+| Dig | Buffer | Yes | SHA256 digest (EncodedPost)
 
 [ObjectId]: https://docs.mongodb.com/manual/reference/bson-types/index.html#objectid
 [MediaType]: https://tools.ietf.org/html/rfc6838

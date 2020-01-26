@@ -10,9 +10,9 @@
     "@types/node" "*"
 
 "@types/node@*":
-  version "12.12.7"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.7.tgz#01e4ea724d9e3bd50d90c11fd5980ba317d8fa11"
-  integrity sha512-E6Zn0rffhgd130zbCbAr/JdXfXkoOUFAKNs/rF8qnafSJ8KYaA/j3oz7dcwal+lYjLA7xvdd5J4wdYpCTlP8+w==
+  version "13.5.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.5.0.tgz#4e498dbf355795a611a87ae5ef811a8660d42662"
+  integrity sha512-Onhn+z72D2O2Pb2ql2xukJ55rglumsVo1H6Fmyi8mlU9SvKdBk/pUSUAiBY/d9bAOF7VVWajX3sths/+g6ZiAQ==
 
 "@xtuc/long@^4.2.2":
   version "4.2.2"
@@ -32,22 +32,22 @@ buffer@^5.4.3:
     base64-js "^1.0.2"
     ieee754 "^1.1.4"
 
-fast-sha256@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/fast-sha256/-/fast-sha256-1.1.1.tgz#2a1fca6a7fd0943da478f17760d19cf52ba78dea"
-  integrity sha512-CKUjAtRhTHaLueE7eUPX4009H7yMZxxBWHYxvzCn3WySKza5+S5EknF86zpOzF4Is4/qNUzbrhtC19gUMzCUdQ==
+fast-sha256@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/fast-sha256/-/fast-sha256-1.3.0.tgz#7916ba2054eeb255982608cccd0f6660c79b7ae6"
+  integrity sha512-n11RGP/lrWEFI/bWdygLxhI+pVeo1ZYIVwvvPkW7azl/rOy+F3HYRZ2K5zeE9mmkhQppyv9sQFx0JM9UabnpPQ==
 
 ieee754@^1.1.4:
   version "1.1.13"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.13.tgz#ec168558e95aa181fd87d37f55c32bbcb6708b84"
   integrity sha512-4vf7I2LYV/HaWerSo3XmlMkp5eZ83i+/CDluXi/IGTs/O1sejBNhTtnxzmRZfvOUqj7lZjqHkeTvpgSFDlWZTg==
 
-smoltest@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/smoltest/-/smoltest-1.0.0.tgz#9f73e052c7f82ab691d7a890de7a6dc9855cc0a7"
-  integrity sha512-DJW91Hc+weYcV25P5MKzS7MYGhsgdn1CtmA9YXlRw0Ojw3nOQl3e2IJ1MAlhrt++5X2OfXiS1X2BvC/DAHZw2g==
+smoltest@*:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/smoltest/-/smoltest-1.0.4.tgz#b32a1ce973642289fc596bb7925d7c8f48438464"
+  integrity sha512-4coeFN4T43VWmu9oWBEO4VvxPAocLBpOgeRia0p9IBme36Ragnu0x3v06hS1YDAOjEqsCTu6TS+bN9YSAaynRA==
 
-tweetnacl@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-1.0.1.tgz#2594d42da73cd036bd0d2a54683dd35a6b55ca17"
-  integrity sha512-kcoMoKTPYnoeS50tzoqjPY3Uv9axeuuFAZY9M/9zFnhoVvRfxz9K29IMPD7jGmt2c8SW7i3gT9WqDl2+nV7p4A==
+tweetnacl@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-1.0.2.tgz#39fba8d1f7a34706a3fc1fd8c04afcad7bb9e689"
+  integrity sha512-+8aPRjmXgf1VqvyxSlBUzKzeYqVS9Ai8vZ28g+mL7dNQl1jlUTCMDZnvNQdAS1xTywMkIXwJsfipsR/6s2+syw==
