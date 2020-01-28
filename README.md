@@ -35,6 +35,16 @@ EncodedPostRef = bson_encode(PostRef)
 | Enc | string | No | Encoding (Content-Encoding)
 | Dig | Buffer | Yes | SHA-256 digest (Contents)
 
+#### Post Encoding
+
+| Encoding | Što
+| --- | ---
+| Bro | [RFC 7932][Brotli] Brotli
+
+Encoding has higher precedence than size and SHA-256.
+
+That is, Sz = length(brotli_compress(Contents))
+
 ### Signature
 
 | Field | Type | Required | Što
@@ -79,6 +89,7 @@ Ref is a [RFC 6901][JSONPointer] JSON Pointer sequence with no ~encoding.
 | Id | ObjectId | Yes | [ObjectId][ObjectId]
 | Dig | Buffer | Yes | SHA-256 digest (EncodedPost)
 
+[Brotli]: https://tools.ietf.org/html/rfc7932
 [BSON]: http://bsonspec.org/
 [DataURLs]: https://tools.ietf.org/html/rfc2397
 [Ed25519]: https://ed25519.cr.yp.to/
