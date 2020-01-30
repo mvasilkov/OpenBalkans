@@ -3,6 +3,14 @@ OpenBalkans
 
 OpenBalkans is a document annotation protocol for web of documents.
 
+Cryptography
+---
+
+- Signatures: [Ed25519][Ed25519]
+  - [TweetNaCl][TweetNaCl]・[JS][TweetNaClJS]
+  - [Libsodium][Libsodium]・[Python][PyNaCl]
+- Key derivation function (KDF): [WarpWallet][WarpWallet]
+
 Data structure
 ---
 
@@ -33,7 +41,7 @@ EncodedPostRef = bson_encode(PostRef)
 | Sz | number | Yes | Size, octets (Content-Length)
 | Typ | string | Yes | [RFC 6838][MediaType] Media Type (Content-Type)
 | Enc | string | No | Encoding (Content-Encoding)
-| Dig | Buffer | Yes | SHA-256 digest (Contents)
+| Has | Buffer | Yes | SHA-256(Contents)
 
 #### Post Encoding
 
@@ -86,13 +94,17 @@ Ref is a [RFC 6901][JSONPointer] JSON Pointer sequence with no ~encoding.
 | Field | Type | Required | Što
 | --- | --- | --- | ---
 | Pk | Buffer | Yes | Public key
-| Id | ObjectId | Yes | [ObjectId][ObjectId]
-| Dig | Buffer | Yes | SHA-256 digest (EncodedPost)
+| Has | Buffer | Yes | SHA-256(EncodedPost)
 
 [Brotli]: https://tools.ietf.org/html/rfc7932
 [BSON]: http://bsonspec.org/
 [DataURLs]: https://tools.ietf.org/html/rfc2397
 [Ed25519]: https://ed25519.cr.yp.to/
 [JSONPointer]: https://tools.ietf.org/html/rfc6901
+[Libsodium]: https://libsodium.org/
 [MediaType]: https://tools.ietf.org/html/rfc6838
 [ObjectId]: https://docs.mongodb.com/manual/reference/bson-types/#objectid
+[PyNaCl]: https://pypi.org/project/PyNaCl/
+[TweetNaCl]: https://tweetnacl.cr.yp.to/
+[TweetNaClJS]: https://www.npmjs.com/package/tweetnacl
+[WarpWallet]: https://keybase.io/warp/
