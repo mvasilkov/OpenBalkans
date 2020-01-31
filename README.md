@@ -7,9 +7,13 @@ Cryptography
 ---
 
 - Signatures: [Ed25519][Ed25519]
-  - [TweetNaCl][TweetNaCl]・[JS][TweetNaClJS]
-  - [Libsodium][Libsodium]・[Python][PyNaCl]
 - Key derivation function (KDF): [WarpWallet][WarpWallet]
+- Content addressing: SHA-256
+
+### Libraries
+
+- [TweetNaCl][TweetNaCl] – [JS][TweetNaClJS]
+- [Libsodium][Libsodium] – [Python][PyNaCl]
 
 Data structure
 ---
@@ -22,6 +26,7 @@ Data structure
 | Node.js | Python 3 | C
 | --- | --- | ---
 | Buffer | bytes | uint8_t[]
+| number | int | int32_t
 
 ### EncodedPost
 
