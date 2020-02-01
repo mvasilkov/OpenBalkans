@@ -47,6 +47,8 @@ EncodedPostRef = bson_encode(PostRef)
 | Typ | string | Yes | [RFC 6838][MediaType] Media Type (Content-Type)
 | Enc | string | No | Encoding (Content-Encoding)
 | Has | Buffer | Yes | SHA-256(Contents)
+| Re | PostRef | No | Reply to a post (In-Reply-To)
+| Upd | PostRef | No | Update a post
 
 #### Post Encoding
 
