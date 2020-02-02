@@ -1,0 +1,12 @@
+{
+  "name": "opb",
+  "version": "0.0.0",
+  "description": "OpenBalkans is a document annotation protocol for web of documents.",
+  "main": "app.js",
+  "repository": "git@github.com:mvasilkov/OpenBalkans.git",
+  "author": "Mark Vasilkov (https://github.com/mvasilkov)",
+  "license": "MIT",
+  "dependencies": {
+    "tweetnacl": "^1.0.2"
+  }
+}
