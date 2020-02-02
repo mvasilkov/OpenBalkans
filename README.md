@@ -8,7 +8,7 @@ Cryptography
 
 - Signatures: [Ed25519][Ed25519]
 - Key derivation function (KDF): [WarpWallet][WarpWallet]
-- Content addressing: SHA-256
+- Content addressing: SHA-512/256
 
 ### Libraries
 
@@ -46,7 +46,7 @@ EncodedPostRef = bson_encode(PostRef)
 | Sz | number | Yes | Size, octets (Content-Length)
 | Typ | string | Yes | [RFC 6838][MediaType] Media Type (Content-Type)
 | Enc | string | No | Encoding (Content-Encoding)
-| Has | Buffer | Yes | SHA-256(Contents)
+| Has | Buffer | Yes | SHA-512/256(Contents)
 | Re | PostRef | No | Reply to a post (In-Reply-To)
 | Upd | PostRef | No | Update a post
 
@@ -56,7 +56,7 @@ EncodedPostRef = bson_encode(PostRef)
 | --- | ---
 | Bro | [RFC 7932][Brotli] Brotli
 
-Encoding has higher precedence than size and SHA-256.
+Encoding has higher precedence than size and SHA-512/256.
 
 That is, Sz = length(brotli_compress(Contents))
 
@@ -101,7 +101,7 @@ Ref is a [RFC 6901][JSONPointer] JSON Pointer sequence with no ~encoding.
 | Field | Type | Required | Što
 | --- | --- | --- | ---
 | Pk | Buffer | Yes | Public key
-| Has | Buffer | Yes | SHA-256(EncodedPost)
+| Has | Buffer | Yes | SHA-512/256(EncodedPost)
 
 [Brotli]: https://tools.ietf.org/html/rfc7932
 [BSON]: http://bsonspec.org/

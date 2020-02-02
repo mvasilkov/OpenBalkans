@@ -4,6 +4,7 @@ Security
 - [Cryptographic Right Answers][LatacoraRight]
 	- Use NaCl ¦ Libsodium
 	- Use Ed25519
+	- If you can get away with it: use SHA-512/256
 
 - [Cryptographic Wrong Answers][LatacoraWrong]
 	- I don't think you want JWT
