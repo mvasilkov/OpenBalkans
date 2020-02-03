@@ -50,6 +50,12 @@ EncodedPostRef = bson_encode(PostRef)
 | Re | PostRef | No | Reply to a post (In-Reply-To)
 | Upd | PostRef | No | Update a post
 
+ObjectId is used as a datetime and a nonce. Don't reuse ObjectId.
+
+When updating a post, don't change the Re field.
+
+Posts are equal when their PostRefs are equal.
+
 #### Post Encoding
 
 | Encoding | Što
