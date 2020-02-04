@@ -6,11 +6,16 @@
   "repository": "git@github.com:mvasilkov/OpenBalkans.git",
   "author": "Mark Vasilkov (https://github.com/mvasilkov)",
   "license": "MIT",
+  "scripts": {
+    "test": "smol test"
+  },
   "dependencies": {
     "@xtuc/long": "^4.2.2",
+    "buffer": "^5.4.3",
     "tweetnacl": "^1.0.2"
   },
   "devDependencies": {
-    "@types/bson": "^4.0.1"
+    "@types/bson": "^4.0.1",
+    "smoltest": "^1.0.4"
   }
 }
