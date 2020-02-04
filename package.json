@@ -7,6 +7,10 @@
   "author": "Mark Vasilkov (https://github.com/mvasilkov)",
   "license": "MIT",
   "dependencies": {
+    "@xtuc/long": "^4.2.2",
     "tweetnacl": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/bson": "^4.0.1"
   }
 }

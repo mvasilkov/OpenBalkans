@@ -1,5 +1,5 @@
 'use strict';
-const Long = require('long');
+const Long = require('@xtuc/long');
 
 /**
  * @ignore

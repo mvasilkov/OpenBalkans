@@ -1,9 +1,7 @@
 'use strict';
 
 const Buffer = require('buffer').Buffer;
-let randomBytes = require('./parser/utils').randomBytes;
-const util = require('util');
-const deprecate = util.deprecate;
+const randomBytes = require('tweetnacl').randomBytes;
 
 // constants
 const PROCESS_UNIQUE = randomBytes(5);
@@ -361,27 +359,6 @@ class ObjectId {
   }
 }
 
-// Deprecated methods
-ObjectId.get_inc = deprecate(
-  () => ObjectId.getInc(),
-  'Please use the static `ObjectId.getInc()` instead'
-);
-
-ObjectId.prototype.get_inc = deprecate(
-  () => ObjectId.getInc(),
-  'Please use the static `ObjectId.getInc()` instead'
-);
-
-ObjectId.prototype.getInc = deprecate(
-  () => ObjectId.getInc(),
-  'Please use the static `ObjectId.getInc()` instead'
-);
-
-ObjectId.prototype.generate = deprecate(
-  time => ObjectId.generate(time),
-  'Please use the static `ObjectId.generate(time)` instead'
-);
-
 /**
  * @ignore
  */
@@ -405,7 +382,7 @@ Object.defineProperty(ObjectId.prototype, 'generationTime', {
  * @return {String} return the 24 byte hex string representation.
  * @ignore
  */
-ObjectId.prototype[util.inspect.custom || 'inspect'] = ObjectId.prototype.toString;
+ObjectId.prototype[Symbol.for('nodejs.util.inspect.custom')] = ObjectId.prototype.toString;
 
 /**
  * @ignore
