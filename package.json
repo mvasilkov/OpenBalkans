@@ -10,12 +10,11 @@
     "test": "smol test"
   },
   "dependencies": {
-    "@stablelib/pbkdf2": "^1.0.0",
     "@stablelib/scrypt": "^1.0.0",
     "@stablelib/sha256": "^1.0.0",
     "@xtuc/long": "^4.2.2",
     "buffer": "^5.4.3",
-    "tweetnacl": "^1.0.2"
+    "tweetnacl": "^1.0.3"
   },
   "devDependencies": {
     "@types/bson": "^4.0.1",
